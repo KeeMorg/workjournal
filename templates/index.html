@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Work Journal</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Work Journal</h1>
+
+    <!-- Form to add new journal entries -->
+    <form method="post">
+        <label for="user">User:</label><br>
+        <input type="text" id="user" name="user"><br>
+
+        <label for="title">Title:</label><br>
+        <input type="text" id="title" name="title"><br>
+
+        <label for="content">Content (1000 characters max):</label><br>
+        <textarea id="content" name="content" maxlength="1000"></textarea><br>
+
+        <input type="submit" value="SUBMIT">
+    </form>
+
+    <!-- Button to export entries as a PDF -->
+    <form action="{{ url_for('export_pdf') }}" method="get">
+        <button type="submit">Export as PDF</button>
+    </form>
+
+    <h2>Entries</h2>
+    <!-- Loop through each entry and display its details -->
+    {% for entry in entries %}
+        <div class="entry">
+            <h3>{{ entry.title }}</h3>
+            <p>By: {{ entry.user }} on {{ entry.entry_date }}</p>
+            <p>{{ entry.content }}</p>
+        </div>
+    {% endfor %}
+</body>
+</html>

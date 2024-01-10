@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Journal Entries</title>
+</head>
+<body>
+    <h1>Journal Entries</h1>
+    {% for entry in entries %}
+        <div>
+            <h2>{{ entry.title }}</h2>
+            <p>By: {{ entry.user }} on {{ entry.entry_date }}</p>
+            <p>{{ entry.content }}</p>
+        </div>
+    {% endfor %}
+</body>
+</html>
